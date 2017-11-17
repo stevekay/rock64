@@ -98,6 +98,7 @@ rock64@rock64:~$
 
 ### CPU
 
+```shell
 rock64@rock64:~$ lscpu
 Architecture:          aarch64
 Byte Order:            Little Endian
@@ -112,6 +113,7 @@ CPU min MHz:           408.0000
 BogoMIPS:              48.00
 Flags:                 fp asimd evtstrm aes pmull sha1 sha2 crc32
 rock64@rock64:~$
+```
 
 ### Memory
 
