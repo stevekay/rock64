@@ -200,6 +200,6 @@ rock64@rock64:~$
 
 
 ## Links
-* (Specs)[https://www.pine64.org/?page_id=7147]
+* [Specs](https://www.pine64.org/?page_id=7147)
 
 
