@@ -30,23 +30,23 @@ ROCK64 4K60P HDR Media Board Computer
 
 * Use PuTTY to logon as user 'rock64'
 
-    login as: rock64
-    rock64@192.168.0.20's password:
-                    _     __   _  _
-     _ __ ___   ___| | __/ /_ | || |
-    | '__/ _ \ / __| |/ / '_ \| || |_
-    | | | (_) | (__|   <| (_) |__   _|
-    |_|  \___/ \___|_|\_\\___/   |_|
-    
-    Linux rock64 4.4.77-rockchip-ayufan-118 #1 SMP Thu Sep 14 21:59:24 UTC 2017 aarch64
-    
-    The programs included with the Debian GNU/Linux system are free software;
-    the exact distribution terms for each program are described in the
-    individual files in /usr/share/doc/*/copyright.
-    
-    Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-    permitted by applicable law.
-    Last login: Thu Sep 14 22:17:42 2017 from 192.168.0.12
-    rock64@rock64:~$
+```shell
+login as: rock64
+rock64@192.168.0.20's password:
+                _     __   _  _
+ _ __ ___   ___| | __/ /_ | || |
+| '__/ _ \ / __| |/ / '_ \| || |_
+| | | (_) | (__|   <| (_) |__   _|
+|_|  \___/ \___|_|\_\\___/   |_|
 
+Linux rock64 4.4.77-rockchip-ayufan-118 #1 SMP Thu Sep 14 21:59:24 UTC 2017 aarch64
 
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Thu Sep 14 22:17:42 2017 from 192.168.0.12
+rock64@rock64:~$
+```
