@@ -205,5 +205,10 @@ Using notes from https://forum.pine64.org/showthread.php?tid=5768&pid=35964#pid3
     steve@rock64:~$ sudo ifconfig enx24050f9e7faa up
     steve@rock64:~$ sudo iwlist enx24050f9e7faa scan | grep ESSID
                         ESSID:"MyNetwork"
-    steve@rock64:~$ sudo iwconfig enx24050f9e7faa essid HelloWorld key 's:mypassword'
+    steve@rock64:~$ sudo vi /etc/network/interfaces.d/enx24050f9e7faa
+    steve@rock64:~$ cat /etc/network/interfaces.d/enx24050f9e7faa
+    auto enx24050f9e7faa
+    iface enx24050f9e7faa inet dhcp
+             wpa-ssid MyNetwork
+             wpa-psk mypassword
     steve@rock64:~$ 
