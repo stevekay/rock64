@@ -183,7 +183,7 @@ Using notes from https://forum.pine64.org/showthread.php?tid=5768&pid=35964#pid3
 
 ## Check after reboot
 
-    steve@rock64:~/rtl8812au$ ip a
+    steve@rock64:~$ ip a
     1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
         link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
         inet 127.0.0.1/8 scope host lo
@@ -198,8 +198,12 @@ Using notes from https://forum.pine64.org/showthread.php?tid=5768&pid=35964#pid3
            valid_lft forever preferred_lft forever
     3: enx24050f9e7faa: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
         link/ether 24:05:0f:9e:7f:aa brd ff:ff:ff:ff:ff:ff
-    steve@rock64:~/rtl8812au$
+    steve@rock64:~$
 
 ## Set SSID
 
-tba
+    steve@rock64:~$ sudo ifconfig enx24050f9e7faa up
+    steve@rock64:~$ sudo iwlist enx24050f9e7faa scan | grep ESSID
+                        ESSID:"MyNetwork"
+    steve@rock64:~$ sudo iwconfig enx24050f9e7faa essid HelloWorld key 's:mypassword'
+    steve@rock64:~$ 
