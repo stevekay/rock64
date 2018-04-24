@@ -1,8 +1,22 @@
-## Initial state - USB wifi device only visible via 'lsusb'
+## Initial state - not working
 
+Device visible at USB+syslog level but no network device.
 
-### Not visible via 'ip a' or 'ip link'
-
+    steve@rock64:~$ lsusb
+    Bus 005 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+    Bus 004 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+    Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+    Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+    Bus 001 Device 002: ID 0bda:8812 Realtek Semiconductor Corp. RTL8812AU 802.11a/b/g/n/ac WLAN Adapter
+    Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+    steve@rock64:~$ sudo cat /var/log/messages|grep 'usb 2-1:'
+    Apr 22 21:08:49 rock64 kernel: [    2.698000] usb 2-1: new high-speed USB device number 2 using ehci-platform
+    Apr 22 21:08:49 rock64 kernel: [    2.816865] usb 2-1: New USB device found, idVendor=0bda, idProduct=8812
+    Apr 22 21:08:49 rock64 kernel: [    2.821341] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+    Apr 22 21:08:49 rock64 kernel: [    2.825735] usb 2-1: Product: 802.11n NIC
+    Apr 22 21:08:49 rock64 kernel: [    2.829803] usb 2-1: Manufacturer: Realtek
+    Apr 22 21:08:49 rock64 kernel: [    2.833854] usb 2-1: SerialNumber: 123456
+    Apr 22 21:14:13 rock64 kernel: [  316.263362] usb 2-1: USB disconnect, device number 2
     steve@rock64:~$ ip a
     1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
         link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -19,10 +33,6 @@
         link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
         link/ether 7e:63:18:24:14:fd brd ff:ff:ff:ff:ff:ff
-    steve@rock64:~$
-
-### Not visible via 'lshw'    
-
     steve@rock64:~$ sudo lshw -c network
       *-network
            description: Ethernet interface
@@ -35,42 +45,19 @@
            configuration: autonegotiation=on broadcast=yes driver=st_gmac driverversion=March_2013 duplex=full ip=192.168.0.28 link=yes multicast=yes port=MII speed=1Gbit/s
     steve@rock64:~$
 
-### Visible via 'lsusb'
-    
-    steve@rock64:~$ lsusb
-    Bus 005 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-    Bus 004 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-    Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
-    Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-    Bus 001 Device 002: ID 0bda:8812 Realtek Semiconductor Corp. RTL8812AU 802.11a/b/g/n/ac WLAN Adapter
-    Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-    steve@rock64:~$
-    
-### Visible via /var/log/messages
-    
-    steve@rock64:~$ sudo cat /var/log/messages|grep 'usb 2-1:'
-    Apr 22 21:08:49 rock64 kernel: [    2.698000] usb 2-1: new high-speed USB device number 2 using ehci-platform
-    Apr 22 21:08:49 rock64 kernel: [    2.816865] usb 2-1: New USB device found, idVendor=0bda, idProduct=8812
-    Apr 22 21:08:49 rock64 kernel: [    2.821341] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
-    Apr 22 21:08:49 rock64 kernel: [    2.825735] usb 2-1: Product: 802.11n NIC
-    Apr 22 21:08:49 rock64 kernel: [    2.829803] usb 2-1: Manufacturer: Realtek
-    Apr 22 21:08:49 rock64 kernel: [    2.833854] usb 2-1: SerialNumber: 123456
-    Apr 22 21:14:13 rock64 kernel: [  316.263362] usb 2-1: USB disconnect, device number 2
-    steve@rock64:~$
-
 ## Download + compile driver
 
-( using notes from https://forum.pine64.org/showthread.php?tid=5768&pid=35964#pid35964 )
+Using notes from https://forum.pine64.org/showthread.php?tid=5768&pid=35964#pid35964.
 
 ### Download git repo
 
-steve@rock64:~$ git clone https://github.com/gnab/rtl8812au.git
-Cloning into 'rtl8812au'...
-remote: Counting objects: 607, done.
-remote: Total 607 (delta 0), reused 0 (delta 0), pack-reused 607
-Receiving objects: 100% (607/607), 1.80 MiB | 1.13 MiB/s, done.
-Resolving deltas: 100% (244/244), done.
-steve@rock64:~$
+    steve@rock64:~$ git clone https://github.com/gnab/rtl8812au.git
+    Cloning into 'rtl8812au'...
+    remote: Counting objects: 607, done.
+    remote: Total 607 (delta 0), reused 0 (delta 0), pack-reused 607
+    Receiving objects: 100% (607/607), 1.80 MiB | 1.13 MiB/s, done.
+    Resolving deltas: 100% (244/244), done.
+    steve@rock64:~$
 
 ### Revise makefile
 
@@ -215,3 +202,4 @@ steve@rock64:~$
 
 ## Set SSID
 
+tba
