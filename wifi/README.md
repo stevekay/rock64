@@ -212,3 +212,7 @@ Using notes from https://forum.pine64.org/showthread.php?tid=5768&pid=35964#pid3
              wpa-ssid MyNetwork
              wpa-psk mypassword
     steve@rock64:~$ 
+
+## TODO
+
+- add dkms commands, so module rebuilds if a new kernel arrives
