@@ -213,6 +213,58 @@ Using notes from https://forum.pine64.org/showthread.php?tid=5768&pid=35964#pid3
              wpa-psk mypassword
     steve@rock64:~$ 
 
-## TODO
+## Survive kernel upgrades
 
-- add dkms commands, so module rebuilds if a new kernel arrives
+Setup DKMS.
+
+    steve@rock64:~$ sudo cp -pr rtl8812au /usr/src/8812au-4.2.2
+    steve@rock64:~$ sudo dkms add -m 8812au -v 4.2.2
+    
+    Creating symlink /var/lib/dkms/8812au/4.2.2/source ->
+                     /usr/src/8812au-4.2.2
+    
+    DKMS: add completed.
+    steve@rock64:~$ sudo dkms add -m 8812au -v 4.2.2
+    
+    Creating symlink /var/lib/dkms/8812au/4.2.2/source ->
+                     /usr/src/8812au-4.2.2
+    
+    DKMS: add completed.
+    steve@rock64:~$ sudo dkms build -m 8812au -v 4.2.2
+    
+    Kernel preparation unnecessary for this kernel.  Skipping...
+    
+    Building module:
+    cleaning build area...
+    'make' all KVER=4.4.77-rockchip-ayufan-136.............................................................................................
+    cleaning build area...
+    
+    DKMS: build completed.
+    steve@rock64:~$ sudo dkms build -m 8812au -v 4.2.2
+    
+    Kernel preparation unnecessary for this kernel.  Skipping...
+    
+    Building module:
+    cleaning build area...
+    'make' all KVER=4.4.77-rockchip-ayufan-136.............................................................................................
+    cleaning build area...
+    
+    DKMS: build completed.
+    steve@rock64:~$ sudo dkms install -m 8812au -v 4.2.2
+    
+    8812au:
+    Running module version sanity check.
+    
+    Good news! Module version v4.2.2_7502.20130517 for 8812au.ko
+    exactly matches what is already found in kernel 4.4.77-rockchip-ayufan-136.
+    DKMS will not replace this module.
+    You may override by specifying --force.
+    
+    depmod...
+    
+    DKMS: install completed.
+    steve@rock64:~$ sudo dkms status
+    8812au, 4.2.2, 4.4.77-rockchip-ayufan-136, aarch64: installedError! Could not locate dkms.conf file.
+    File:  does not exist.
+     (WARNING! Diff between built and installed module!)
+    steve@rock64:~$
